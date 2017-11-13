@@ -26,7 +26,7 @@ install.packages("devtools")
 ```
 Install the RMV2.0 package using the following command:
 ```r
-devtools::install_github("samirtouzani/GBMbaseline")
+devtools::install_github("LBNL-ETA/RMV2.0")
 ```
 
 ## Input Data
