@@ -1,0 +1,31 @@
+Package: RMV2.0
+Type: Package
+Title: M&V2.0 Using R and Shiny
+Version: 1.0.0
+Authors@R: person("Samir", "Touzani", email = "stouzani@lbl.gov", role = c("aut", "cre"))
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
+Imports:
+    dplyr (>= 0.7.4),
+    DT (>= 0.2),
+    reshape2 (>= 1.4.2),
+    lubridate (>= 1.6.0),
+    parallel (>= 3.4.1),
+    xts (>= 0.10-0),
+    shiny (>= 1.0.5),
+    shinydashboard (>= 0.6.1),
+    shinyFiles (>= 0.6.2),
+    shinyjs (>= 0.9.1),
+    dygraphs (>= 1.1.1.4),
+    plotly (>= 4.7.1),
+    ggplot2 (>= 2.2.1),
+    changepoint (>= 2.2.2),
+    colorRamps (>= 2.3),
+    xgboost (>= 0.6-4),
+    caret (>= 6.0-77),
+	   V8 (>= 1.5),
+    forecast (>= 8.2)

@@ -1,0 +1,4 @@
+Name: RMV2.0
+Description: Start RMV2.0 App
+Binding: runRMV_UI
+Interactive: true
