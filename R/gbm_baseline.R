@@ -11,16 +11,18 @@
 #' @param train_path The path of the file from which the training data are to be read.
 #' @param pred_path The path of the file from which the prediction data are to be read.
 #' @param days_off_path The path of the file from which the date data of days off (e.g., holidays) are to be read.
+#' @param train_Data A dataframe, of the training period, where the columns correspond to the time steps (time), the energy load (eload) and to the Temperature (Temp).
+#' @param pred_Data A dataframe, of the prediction period, where the columns correspond to the time steps (time), the energy load (eload) and to the Temperature (Temp).
 #' @param k_folds An integer that corresponds to the number of CV folds.
 #' @param variables A vector that contains the names of the variables that will be considered by the function
 #' as input variables.
 #' @param ncores Number of threads used for the parallelization of the cross validation.
-#' @param cv_blocks type of blocks for the cross validation; Default is "none", which correspond
+#' @param cv_blocks Type of blocks for the cross validation; Default is "none", which correspond
 #' to the standard k-fold cross validation technique.
-#' @param iter The search grid combination of the number of iterations.
-#' @param depth The search grid combination of the maximum depths.
-#' @param lr The search grid combination of the learning rates.
-#' @param subsample.
+#' @param iter A vector with combination of the number of iterations.
+#' @param depth A vector with combination of the maximum depths.
+#' @param lr A vector with combination of the learning rates.
+#' @param subsample A vector with combination of subsamples.
 #'
 #' @return a gbm_baseline object, which alist with the following components:
 #' \describe{
@@ -155,8 +157,7 @@ gbm_baseline <- function(train_path = NULL,
 #-------------------------------------------------------------------------------
 #' Gradient boosting machine tuning function.
 #'
-#' \code{gbm_tune} splits the data into k folds by randomly selecting blocks of data,
-#' where each block correspond to a calendar day.
+#' \code{gbm_tune} Function used to tune the hyper parameters of the GBM model.
 #'
 #'
 #' @param Data A dataframe.
@@ -166,9 +167,10 @@ gbm_baseline <- function(train_path = NULL,
 #' @param ncores Number of threads used for the parallelization of the cross validation
 #' @param cv_blocks type of blocks for the cross validation; Default is "none", which corresponds
 #' to the standard cross validation technique
-#' @param iter The search grid combination of the number of iterations
-#' @param depth The search grid combination of the maximum depths
-#' @param lr The search grid combination of the learning rates
+#' @param iter A vector with combination of the number of iterations.
+#' @param depth A vector with combination of the maximum depths.
+#' @param lr A vector with combination of the learning rates.
+#' @param subsample A vector with combination of subsamples.
 #'
 #' @return a list with the two following components:
 #' \describe{
@@ -179,9 +181,15 @@ gbm_baseline <- function(train_path = NULL,
 #'
 #' @export
 
-gbm_tune <- function(Data,k_folds,variables = c("Temp","tow"),
-                     ncores, cv_blocks = "none",
-                     iter, depth, lr,subsample){
+gbm_tune <- function(Data,
+                     k_folds,
+                     variables = c("Temp","tow"),
+                     ncores,
+                     cv_blocks = "none",
+                     iter,
+                     depth,
+                     lr,
+                     subsample){
   cl <- parallel::makeCluster(ncores)
   output <- Data$eload
   input <- Data[,variables]
@@ -192,7 +200,7 @@ gbm_tune <- function(Data,k_folds,variables = c("Temp","tow"),
     list_train <- k_wblocks_cv(Data,k_folds)
   }
   if (cv_blocks=="none"){
-    list_train <- createFolds(y = output,k = k_folds,list = T)
+    list_train <- caret::createFolds(y = output,k = k_folds,list = T)
   }
   gbm_grid <-  expand.grid(nrounds = iter,
                            max_depth = depth,
@@ -262,7 +270,7 @@ gbm_cv_parallel <- function(idx_train,input,output,nrounds,max_depth,eta,subsamp
                               verbose = 0,
                               nthread = 1,
                               save_period = NULL)
-  yhat <- predict(xgb_fit, test)
+  yhat <- xgboost::predict(xgb_fit, test)
   tab_res$R2[1] <- 1-mean((yhat - test_output)^2)/var(test_output)
   tab_res$RMSE[1] <- sqrt(mean((yhat - test_output)^2))
   tab_res$CVRMSE[1] <- 100*sqrt(mean((yhat - test_output)^2))/mean(test_output)

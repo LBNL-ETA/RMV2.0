@@ -1170,7 +1170,7 @@ dashboardPage(skin = "red",
                        width =3,
                        solidHeader = F,
                        status = "info",
-                       paste("The savings are estimated by substracting the
+                       paste("The savings are estimated by subtracting the
                               actual energy consumption from the baseline
                               model predicted energy consumption of the post
                               period."),

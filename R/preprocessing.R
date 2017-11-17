@@ -29,9 +29,9 @@ time_format <- function(Data,format){
 
 
 
-#' Convert 15 minute interval data to hourly interval data
+#' Convert 15 minute interval data into hourly interval data
 #'
-#' \code{convert_15min_to_1_hour} This function convert 15 minute interval data to hourly interval data
+#' \code{convert_15min_to_1_hour} This function convert 15 minute interval data into hourly interval data
 #'
 #'
 #' @param Data A dataframe that contains 15 minutes interval data
@@ -77,6 +77,7 @@ convert_15min_to_1_hour <- function(Data,kWh=TRUE){
 #'
 #'
 #' @param Data A dataframe
+#' @param intervals_to_exclude a path to the file with intervals to exclude
 #' @return A dataframe containing the remaining observations
 #'
 #' @export
@@ -103,6 +104,9 @@ to_exclude <- function(Data,intervals_to_exclude){
 #'
 #'
 #' @param Data A dataframe containing all observations
+#' @param intervals_to_extract A path to the file with intervals to extract
+#' @param start The start date of teh interval to exclude
+#' @param end The end date of teh interval to exclude
 #' @return a to_extract object, which is a list with the following components:
 #' \describe{
 #'   \item{Data}{a dataframe containing the remaining observations}
@@ -153,23 +157,23 @@ to_extract <- function(Data,
 
 
 
-#' Count the number of days
-#'
-#' \code{number_of_days} This function compute the number of days for  which the data are available
-#'
-#'
-#' @param Data A dataframe that contains time as column
-#' @return a numeric corresponding to the number of days
-#'
-#' @export
-
-
-number_of_days <- function(Data){
-  Data$time <- as.POSIXct(strptime(Data$time,"%m/%d/%y %H:%M"))
-  Data$date <- as.Date(Data$time)
-  num <- length(unique(Data$date))
-  return(num)
-}
+# #' Count the number of days
+# #'
+# #' \code{number_of_days} This function compute the number of days for  which the data are available
+# #'
+# #'
+# #' @param Data A dataframe that contains time as column
+# #' @return a numeric corresponding to the number of days
+# #'
+# #' @export
+#
+#
+# number_of_days <- function(Data){
+#   Data$time <- as.POSIXct(strptime(Data$time,"%m/%d/%y %H:%M"))
+#   Data$date <- as.Date(Data$time)
+#   num <- length(unique(Data$date))
+#   return(num)
+# }
 
 
 #' Clean the elaod data

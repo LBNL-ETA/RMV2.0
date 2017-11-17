@@ -4,10 +4,10 @@
 # nrevent.R
 #-------------------------------------------------------------------------------
 
-#' Function to detect non-routine events
+#' Function to detect potential non-routine events
 #'
 #' \code{cpt_det} This function identify non-routine events in the savings
-#' time series it uses cpt.meanvar frunctin from changepoint package to identify
+#' time series it uses cpt.meanvar function from changepoint package to identify
 #' changes in mean and variance
 #'
 #' @param baseline_obj  A baseline object, which is produced by the baseline
@@ -49,11 +49,15 @@ cpt_det <- function(baseline_obj, interval){
 
 #' Function to identify change points in the whole dataset
 #'
-#' \code{train_model} This function is used by the shiny application to train
-#' the baseline models for all the data that are stored in the var_out object
+#' \code{train_model} This function is used by the shiny application to detect
+#' potential non-routine events for all the the trained models in the var_out object
 #'
 #' @param var_out a shiny reactiveValues object where the data are stored
-#' @return a list
+#' @return a nre_eval object, which is a list with the following components:
+#' \describe{
+#'   \item{cbt_obj_list}{a list of cpt_det object where each element correspond to a building}
+#'   \item{sav_est_tab_2}{A dataframe that correspond to an updated version of var_out$sav_est_tab}
+#' }
 #'
 #' @export
 

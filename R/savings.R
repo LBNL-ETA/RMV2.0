@@ -11,7 +11,7 @@
 #' \code{savings} This function compute the estimated savings using the predicted data of the post period.
 #'
 #'
-#' @param baseline_obj  A baseline object, which is produced by the baseline function (e.g., towt_baseline)
+#' @param baseline_obj  A baseline object, which is produced by the baseline function
 #'
 #' @return a savings object, which is a list with the following components:
 #' \describe{
@@ -122,7 +122,7 @@ savings <- function(baseline_obj){
 #' \code{savings_summary} This function is used by the shiny application
 #' to produce the savings and the uncertainties summary table
 #'
-#' @param sav_out a shiny reactiveValues object the baseline object and the pre/post data are stored
+#' @param sav_out a shiny reactiveValues object where the baseline object and the pre/post data are stored
 ##' @param inCL a numerical value corresponding to the user specified confidence level
 #' @return a dataframe of the savings summary
 #'
@@ -184,9 +184,9 @@ savings_summary <- function(sav_out){
 # }
 
 
-#' Savings summary
+#' Portfolio Savings summary
 #'
-#' \code{savings_summary} This function is used by the shiny application
+#' \code{portfolio_savings} This function is used by the shiny application
 #' to produce results summary at the portfolio level
 #'
 #' @param sav_out a shiny reactiveValues object where the baseline object and the pre/post data are stored
@@ -194,11 +194,11 @@ savings_summary <- function(sav_out){
 #' @return a portfolio_savings object which is a list  with the following components:
 #' \describe{
 #'   \item{Savings_portfolio}{numerical value corresponding to the estimated savings at portfolio level}
-#'   \item{Delta_portfolio}{numerical value corresponding to the estimated savings uncertainty at portfolio level}
-#'   \item{Savings_Range}{a text string corresponding to the estimated savings range at the portfolio level}
+##'   \item{Delta_portfolio}{numerical value corresponding to the estimated savings uncertainty at portfolio level}
+##'   \item{Savings_Range}{a text string corresponding to the estimated savings range at the portfolio level}
 #'   \item{FS_portfolio}{numerical value corresponding to the estimated fractional savings at portfolio level}
-#'   \item{FSU_portfolio}{numerical value corresponding to the estimated fractional savings uncertainty at portfolio level}
-#'   \item{FS_Range}{a text string corresponding to the estimated fractional savings range at the portfolio level}
+##'   \item{FSU_portfolio}{numerical value corresponding to the estimated fractional savings uncertainty at portfolio level}
+##'   \item{FS_Range}{a text string corresponding to the estimated fractional savings range at the portfolio level}
 #' }
 #'
 #' @export

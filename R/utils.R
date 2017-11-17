@@ -59,7 +59,7 @@ load_session <- function(load_path){
 #' Compute number of days in the data
 #'
 #' \code{number_of_days} This function computes the number of days for which data
-#' is available
+#' are available
 #'
 #' @param Data A data frame that contains time column
 #'
@@ -193,6 +193,9 @@ data_load <- function(files_path, files_names, var_out, Post = T, clean = T){
 #' savings analysis. If it's a screening then the baseline model will return only
 #' the fitting results of the pre-installation. While if it's savings analysis the
 #' baseline model will also return the prediction for the post-installation period
+#' @param Model Character string that correspond to the name of the model
+#' @param pam_list A list with information about the hyperparameters of the considel model
+#' @param days_off_path A path of the file that include the date of the days off
 #' @return train_model a list
 #'
 #' @export

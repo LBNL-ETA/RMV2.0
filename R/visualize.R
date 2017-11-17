@@ -20,7 +20,7 @@
 #' @param low_range_T_0 a numerical value of the lower bound of the Temp axis
 #' @param high_range_T_0 a numerical value of the upper bound of the Temp axis
 #'
-#' @return A dygraph time series plot
+#' @return A dygraph time series plot object
 #'
 #' @export
 
