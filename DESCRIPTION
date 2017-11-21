@@ -3,19 +3,18 @@ Type: Package
 Title: M&V2.0 Using R and Shiny
 Version: 1.0.0
 Authors@R: person("Samir", "Touzani", email = "stouzani@lbl.gov", role = c("aut", "cre"))
-Description: RMV2.0 is an open-source R package for performing
-measurement and verification 2.0 (M&V 2.0)for Commercial Buildings. Aimed to run
-locally, the package provides algorithms and a graphical user interface (GUI)
-based on Shiny package. The intent of this package
-is to help M&V practitioners to perform with a high level of automation the following:
-* Quickly and easily summarize and visualize smart meter data.
-* Create energy consumption baseline models using advanced algorithms.
-* Screen smart meter data for commercial customers to identify buildings that
-are well suited to the automated M&V approach; use this information to target
-future whole-building projects.
-*  Quantify savings and corresponding at both a building and portfolio level.
-*  Identify potential non-routine events (NRE) in the post-installation period
-using statistical methodology.
+Description: RMV2.0 is an open-source R package for performing measurement and
+    verification 2.0 (M&V 2.0)for Commercial Buildings. Aimed to run locally,
+    the package provides algorithms and a graphical user interface (GUI) based
+    on Shiny package. The intent of this package is to help M&V practitioners
+    to perform with a high level of automation the following: Quickly and
+    easily summarize and visualize smart meter data. Create energy consumption
+    baseline models using advanced algorithms. Screen smart meter data for
+    commercial customers to identify buildings that are well suited to the
+    automated M&V approach; use this information to target future
+    whole-building projects. Quantify savings and corresponding at both a
+    building and portfolio level. Identify potential non-routine events (NRE)
+    in the post-installation period using statistical methodology.
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
