@@ -12,7 +12,7 @@ is to help M&V practitioners to perform with a high level of automation the foll
 * Screen smart meter data for commercial customers to identify buildings that
 are well suited to the automated M&V approach; use this information to target
 future whole-building projects.
-*  Quantify savings and corresponding at both a building and portfolio level.
+*  Quantify savings at both a building and portfolio level.
 *  Identify potential non-routine events (NRE) in the post-installation period
 using statistical methodology.
 
