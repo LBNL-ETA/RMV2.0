@@ -41,8 +41,8 @@ corresponds to the input data. As an example of this format see bellow:
 
 ```r
 "time","eload","Temp"
-"1/1/14 1:00",24.17,52.6
-"1/1/14 1:15",24.95,52.1
+"1/1/14 23:00",24.17,52.6
+"1/1/14 23:15",24.95,52.1
 ```
 which correspond to the following table:
 
