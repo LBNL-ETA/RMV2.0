@@ -291,7 +291,7 @@ shinyServer(function(input, output, session) {
                color = "red")
      })
    }
-   screen_out$Model <- input$Model_sav
+   screen_out$Model <- input$Model_sc
  })
 
 

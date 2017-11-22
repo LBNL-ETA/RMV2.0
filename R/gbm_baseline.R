@@ -270,7 +270,7 @@ gbm_cv_parallel <- function(idx_train,input,output,nrounds,max_depth,eta,subsamp
                               verbose = 0,
                               nthread = 1,
                               save_period = NULL)
-  yhat <- xgboost::predict(xgb_fit, test)
+  yhat <- predict(xgb_fit, test)
   tab_res$R2[1] <- 1-mean((yhat - test_output)^2)/var(test_output)
   tab_res$RMSE[1] <- sqrt(mean((yhat - test_output)^2))
   tab_res$CVRMSE[1] <- 100*sqrt(mean((yhat - test_output)^2))/mean(test_output)
