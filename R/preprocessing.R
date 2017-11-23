@@ -157,6 +157,7 @@ to_extract <- function(Data,
 
 #' Create an input variable corresponding to given intervals
 #'
+#'
 #' \code{create_date_var} This function Create a binary input variable corresponding
 #' to given intervals if the time steps correspond to a date within the given
 #' interval then the value of the input variable will be equal to 1 and if not it
