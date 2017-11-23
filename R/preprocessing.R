@@ -155,6 +155,60 @@ to_extract <- function(Data,
   return(results)
 }
 
+#' Create an input variable corresponding to given intervals
+#'
+#' \code{create_date_var} This function Create a binary input variable corresponding
+#' to given intervals if the time steps correspond to a date within the given
+#' interval then the value of the input variable will be equal to 1 and if not it
+#' will be equal to 0
+#'
+#'
+#' @param Data A dataframe of training or prediction data.
+#' @param intervals_path A path to the file with intervals to extract
+#' @param start A vector of start date of each interval
+#' @param end A vector of end date of each interval note that start vector and
+#' end vector should have the same length
+#' @param var_name A string character that correspond to the name of the new
+#' input variable
+#' @return a dataframe with the additional input variable
+#'
+#' @export
+
+create_date_var <- function(Data,
+                            intervals_path = NULL,
+                            start = NULL,
+                            end = NULL,
+                            var_name = "date_off"){
+  Data$var_add <- 0
+  if (length(intervals_path) != 0){
+    intervals <- read.csv(file = intervals_path,
+                          header=T, row.names = NULL,
+                          stringsAsFactors = F)
+  }
+  else if (length(start) != 0 && length(end) != 0) {
+    intervals <- as.data.frame(matrix(nr=length(start),nc=2))
+    names(intervals) <-  c("start","end")
+    intervals$start <- start
+    intervals$end <- end
+  }
+  else(return())
+
+  Data$dts <- as.POSIXct(strptime(Data$time, format = "%m/%d/%y %H:%M"))
+  if (dim(intervals)[1]>=1){
+   for (i in 1:dim(intervals)[1]){
+    start_time <- as.POSIXct(strptime(intervals$start[i],
+                                      format = "%m/%d/%y %H:%M"))
+    end_time <- as.POSIXct(strptime(intervals$end[i],
+                                    format = "%m/%d/%y %H:%M"))
+    if (length(which(Data$dts > start_time & Data$dts < end_time))!=0){
+     Data$var_add[which(Data$dts >= start_time & Data$dts <= end_time)] <- 1
+    }
+   }
+  }
+  Data <- dplyr::select(Data,time,eload,Temp,var_add)
+  names(Data) <- c("time","eload","Temp",var_name)
+  return(Data)
+}
 
 
 # #' Count the number of days
@@ -213,7 +267,7 @@ clean_eload <- function(Data,n = .2, L_ptresh = 0.005, U_ptresh = 0.995){
 #'  than some predefined extreme values.
 #'
 #'
-#' @param data A dataframe of training or prediction data.
+#' @param Data A dataframe of training or prediction data.
 #' @param maxT A numeric that correspond to the temperature above which the corresponding
 #' observations will be excluded
 #' @param minT A numeric that correspond to the temperature below which the corresponding
