@@ -8,6 +8,12 @@ to_extract(Data, intervals_to_extract = NULL, start = NULL, end = NULL)
 }
 \arguments{
 \item{Data}{A dataframe containing all observations}
+
+\item{intervals_to_extract}{A path to the file with intervals to extract}
+
+\item{start}{The start date of teh interval to exclude}
+
+\item{end}{The end date of teh interval to exclude}
 }
 \value{
 a to_extract object, which is a list with the following components:

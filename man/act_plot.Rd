@@ -19,7 +19,7 @@ act_plot(Data, title = NULL, low_range_0 = NULL, high_range_0 = NULL,
 \item{high_range_T_0}{a numerical value of the upper bound of the Temp axis}
 }
 \value{
-A dygraph time series plot
+A dygraph time series plot object
 }
 \description{
 \code{act_plot} a function that generate a dygraph plot of the actual observations (eload and Temp)

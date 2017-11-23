@@ -8,6 +8,8 @@ to_exclude(Data, intervals_to_exclude)
 }
 \arguments{
 \item{Data}{A dataframe}
+
+\item{intervals_to_exclude}{a path to the file with intervals to exclude}
 }
 \value{
 A dataframe containing the remaining observations

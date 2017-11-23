@@ -2,7 +2,7 @@
 % Please edit documentation in R/preprocessing.R
 \name{convert_15min_to_1_hour}
 \alias{convert_15min_to_1_hour}
-\title{Convert 15 minute interval data to hourly interval data}
+\title{Convert 15 minute interval data into hourly interval data}
 \usage{
 convert_15min_to_1_hour(Data, kWh = TRUE)
 }
@@ -15,5 +15,5 @@ convert_15min_to_1_hour(Data, kWh = TRUE)
 A dataframe with hourly interval data
 }
 \description{
-\code{convert_15min_to_1_hour} This function convert 15 minute interval data to hourly interval data
+\code{convert_15min_to_1_hour} This function convert 15 minute interval data into hourly interval data
 }

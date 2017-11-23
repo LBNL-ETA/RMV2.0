@@ -2,7 +2,7 @@
 % Please edit documentation in R/nrevent.R
 \name{cpt_det}
 \alias{cpt_det}
-\title{Function to detect non-routine events}
+\title{Function to detect potential non-routine events}
 \usage{
 cpt_det(baseline_obj, interval)
 }
@@ -22,6 +22,6 @@ a cpt_det object, which is a list with the following components:
 }
 \description{
 \code{cpt_det} This function identify non-routine events in the savings
-time series it uses cpt.meanvar frunctin from changepoint package to identify
+time series it uses cpt.meanvar function from changepoint package to identify
 changes in mean and variance
 }

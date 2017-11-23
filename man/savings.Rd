@@ -7,7 +7,7 @@
 savings(baseline_obj)
 }
 \arguments{
-\item{baseline_obj}{A baseline object, which is produced by the baseline function (e.g., towt_baseline)}
+\item{baseline_obj}{A baseline object, which is produced by the baseline function}
 }
 \value{
 a savings object, which is a list with the following components:

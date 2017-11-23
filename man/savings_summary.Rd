@@ -7,7 +7,7 @@
 savings_summary(sav_out)
 }
 \arguments{
-\item{sav_out}{a shiny reactiveValues object the baseline object and the pre/post data are stored}
+\item{sav_out}{a shiny reactiveValues object where the baseline object and the pre/post data are stored}
 
 \item{inCL}{a numerical value corresponding to the user specified confidence level}
 }

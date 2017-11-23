@@ -20,11 +20,13 @@ as input variables.}
 \item{cv_blocks}{type of blocks for the cross validation; Default is "none", which corresponds
 to the standard cross validation technique}
 
-\item{iter}{The search grid combination of the number of iterations}
+\item{iter}{A vector with combination of the number of iterations.}
 
-\item{depth}{The search grid combination of the maximum depths}
+\item{depth}{A vector with combination of the maximum depths.}
 
-\item{lr}{The search grid combination of the learning rates}
+\item{lr}{A vector with combination of the learning rates.}
+
+\item{subsample}{A vector with combination of subsamples.}
 }
 \value{
 a list with the two following components:
@@ -35,6 +37,5 @@ a list with the two following components:
 }
 }
 \description{
-\code{gbm_tune} splits the data into k folds by randomly selecting blocks of data,
-where each block correspond to a calendar day.
+\code{gbm_tune} Function used to tune the hyper parameters of the GBM model.
 }

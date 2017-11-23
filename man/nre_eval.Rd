@@ -10,9 +10,13 @@ nre_eval(var_out)
 \item{var_out}{a shiny reactiveValues object where the data are stored}
 }
 \value{
-a list
+a nre_eval object, which is a list with the following components:
+\describe{
+  \item{cbt_obj_list}{a list of cpt_det object where each element correspond to a building}
+  \item{sav_est_tab_2}{A dataframe that correspond to an updated version of var_out$sav_est_tab}
+}
 }
 \description{
-\code{train_model} This function is used by the shiny application to train
-the baseline models for all the data that are stored in the var_out object
+\code{train_model} This function is used by the shiny application to detect
+potential non-routine events for all the the trained models in the var_out object
 }

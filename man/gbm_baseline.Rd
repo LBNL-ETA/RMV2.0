@@ -18,6 +18,10 @@ gbm_baseline(train_path = NULL, pred_path = NULL, days_off_path = NULL,
 
 \item{days_off_path}{The path of the file from which the date data of days off (e.g., holidays) are to be read.}
 
+\item{train_Data}{A dataframe, of the training period, where the columns correspond to the time steps (time), the energy load (eload) and to the Temperature (Temp).}
+
+\item{pred_Data}{A dataframe, of the prediction period, where the columns correspond to the time steps (time), the energy load (eload) and to the Temperature (Temp).}
+
 \item{k_folds}{An integer that corresponds to the number of CV folds.}
 
 \item{variables}{A vector that contains the names of the variables that will be considered by the function
@@ -25,16 +29,16 @@ as input variables.}
 
 \item{ncores}{Number of threads used for the parallelization of the cross validation.}
 
-\item{cv_blocks}{type of blocks for the cross validation; Default is "none", which correspond
+\item{cv_blocks}{Type of blocks for the cross validation; Default is "none", which correspond
 to the standard k-fold cross validation technique.}
 
-\item{iter}{The search grid combination of the number of iterations.}
+\item{iter}{A vector with combination of the number of iterations.}
 
-\item{depth}{The search grid combination of the maximum depths.}
+\item{depth}{A vector with combination of the maximum depths.}
 
-\item{lr}{The search grid combination of the learning rates.}
+\item{lr}{A vector with combination of the learning rates.}
 
-\item{subsample.}{}
+\item{subsample}{A vector with combination of subsamples.}
 }
 \value{
 a gbm_baseline object, which alist with the following components:

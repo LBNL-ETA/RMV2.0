@@ -7,13 +7,13 @@
 clean_Temp(Data, maxT = 130, minT = -80)
 }
 \arguments{
+\item{Data}{A dataframe of training or prediction data.}
+
 \item{maxT}{A numeric that correspond to the temperature above which the corresponding
 observations will be excluded}
 
 \item{minT}{A numeric that correspond to the temperature below which the corresponding
 observations will be excluded}
-
-\item{data}{A dataframe of training or prediction data.}
 }
 \value{
 A dataframe that correspond to the cleaned training or prediction data

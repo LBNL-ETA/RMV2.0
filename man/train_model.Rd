@@ -14,6 +14,12 @@ train_model(var_out, screen = T, Model = "TOWT", pam_list = NULL,
 savings analysis. If it's a screening then the baseline model will return only
 the fitting results of the pre-installation. While if it's savings analysis the
 baseline model will also return the prediction for the post-installation period}
+
+\item{Model}{Character string that correspond to the name of the model}
+
+\item{pam_list}{A list with information about the hyperparameters of the considel model}
+
+\item{days_off_path}{A path of the file that include the date of the days off}
 }
 \value{
 train_model a list

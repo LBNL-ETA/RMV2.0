@@ -2,7 +2,7 @@
 % Please edit documentation in R/savings.R
 \name{portfolio_savings}
 \alias{portfolio_savings}
-\title{Savings summary}
+\title{Portfolio Savings summary}
 \usage{
 portfolio_savings(sav_out, screened = F)
 }
@@ -23,6 +23,6 @@ a portfolio_savings object which is a list  with the following components:
 }
 }
 \description{
-\code{savings_summary} This function is used by the shiny application
+\code{portfolio_savings} This function is used by the shiny application
 to produce results summary at the portfolio level
 }
