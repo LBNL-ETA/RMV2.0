@@ -719,7 +719,7 @@ save_plot <- function(baseline_obj,title=NULL,plot_group=NULL){
   return(p)
 }
 
-#' Plot the residual/savings and teh idetified change points in the post period
+#' Plot the residual/savings and the identified change points in the post period
 #'
 #' \code{cpt_save_plot} Read a baseline object and plots the residuals between the actual and the predicted data
 #'
@@ -793,6 +793,7 @@ cpt_save_plot <- function(baseline_obj,cpt_det_obj,title=NULL,plot_group=NULL){
   }
 
   data_xts <- cbind(data_xts, savings_means_xts)
+  idx_cpts <- cpt_det_obj$cpts[-length(cpt_det_obj$cpts)]
 
   if ((dim(savings)[1]) != 0 && (dim(over)[1]) != 0){
     p <- dygraphs::dygraph(data_xts, main = title, group = plot_group) %>%
@@ -803,6 +804,7 @@ cpt_save_plot <- function(baseline_obj,cpt_det_obj,title=NULL,plot_group=NULL){
          dygraphs::dySeries("mean_values", label = "mean values", fillGraph = F,
                             color = "red", stepPlot = T, strokeWidth = 7) %>%
          dygraphs::dyAxis("y", label = "savings") %>%
+         dygraphs::dyEvent(dts[idx_cpts]) %>%
          dygraphs::dyLegend(width = 350)
     return(p)
   }
@@ -813,6 +815,7 @@ cpt_save_plot <- function(baseline_obj,cpt_det_obj,title=NULL,plot_group=NULL){
          dygraphs::dySeries("mean_values", label = "mean values", fillGraph = F,
                             color = "red", stepPlot = T, strokeWidth = 7) %>%
          dygraphs::dyAxis("y", label = "savings") %>%
+         dygraphs::dyEvent(dts[idx_cpts]) %>%
          dygraphs::dyLegend(width = 350)
     return(p)
   }
@@ -823,6 +826,7 @@ cpt_save_plot <- function(baseline_obj,cpt_det_obj,title=NULL,plot_group=NULL){
          dygraphs::dySeries("mean_values", label = "mean values", fillGraph = F,
                             color = "red", stepPlot = T, strokeWidth = 7) %>%
          dygraphs::dyAxis("y", label = "savings") %>%
+         dygraphs::dyEvent(dts[idx_cpts]) %>%
          dygraphs::dyLegend(width = 350)
     return(p)
   }

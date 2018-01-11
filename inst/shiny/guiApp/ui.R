@@ -210,20 +210,8 @@ dashboardPage(skin = "red",
       tabItem(tabName = "home",
         fluidPage(title = "Home",
           fluidRow(
-            column(width = 4),
-            column(width = 4,
-              box(#title = h1("LBNL MV 2.0 Toolbox"),
-                  status ="info",
-                  width = 12,
-                  #background = "red",
-                  solidHeader = F,
-                  collapsible = F,
-                  collapsed = F,
-                  div(img(src='logo.svg'),style="text-align: center;")
-                )# end of box
-            ),# end of column
-            column(width = 4)
-            )# end of fluidRow
+            div(img(src='logo.svg'),style="text-align: center;")
+          )# end of fluidRow
         )# end of fluidPage
       ),#end of tabItem
 
