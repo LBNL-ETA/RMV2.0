@@ -24,6 +24,7 @@ time_format <- function(Data,format){
   }
   dts <- as.POSIXct(strptime(Data$time, format = format))
   Data$time <- format(dts,"%m/%d/%y %H:%M")
+  return(Data)
 }
 
 
