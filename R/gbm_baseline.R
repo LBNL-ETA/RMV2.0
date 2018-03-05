@@ -141,7 +141,7 @@ gbm_baseline <- function(train_path = NULL,
     }
     pred <- clean_Temp(pred)
     pred_input <- pred[,variables]
-    y_pred <- xgboost::predict(gbm_model, as.matrix(pred_input))
+    y_pred <- predict(gbm_model, as.matrix(pred_input))
     res$pred <- pred
     res$prediction <- y_pred
   }
