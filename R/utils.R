@@ -429,13 +429,63 @@ days_off_var <- function(days_off_path,Data){
 #' @export
 
 pred_accuracy <- function(baseline_obj){
- y_pred <- towt_baseline_obj$prediction
- pred_output <- dplyr::select(towt_baseline_obj$pred,eload)
- pred_residuals <- pred_output$eload - y_pred
- pred_metrics <- as.data.frame(matrix(nr=1,nc=3))
- names(pred_metrics) <- c("pred_R2","pred_CVRMSE","pred_NMBE")
- pred_metrics$pred_R2 <- 100*(1-mean((pred_residuals)^2)/var(pred_output$eload))
- pred_metrics$pred_CVRMSE <- 100*sqrt(mean((pred_residuals)^2))/mean(pred_output$eload)
- pred_metrics$pred_NMBE <- 100*mean((pred_residuals))/mean(pred_output$eload)
- return(pred_metrics)
+  y_pred <- towt_baseline_obj$prediction
+  pred_output <- dplyr::select(towt_baseline_obj$pred,eload)
+  pred_residuals <- pred_output$eload - y_pred
+  pred_metrics <- as.data.frame(matrix(nr=1,nc=3))
+  names(pred_metrics) <- c("pred_R2","pred_CVRMSE","pred_NMBE")
+  pred_metrics$pred_R2 <- 100*(1-mean((pred_residuals)^2)/var(pred_output$eload))
+  pred_metrics$pred_CVRMSE <- 100*sqrt(mean((pred_residuals)^2))/mean(pred_output$eload)
+  pred_metrics$pred_NMBE <- 100*mean((pred_residuals))/mean(pred_output$eload)
+  return(pred_metrics)
+}
+
+
+#' Predictions Data Savings
+#'
+#' \code{save_predictions} This function extract and save predictions 
+#' from baseline model objects 
+#'
+#' @param model_obj_list A list of baseline objects
+#' @param save_results_path The path where the files will be saved
+#' @param post A boolean that determines if post prediction should be saved
+#'
+#' @export
+
+save_predictions <- function(model_obj_list, 
+                             save_results_path = NULL,
+                             post = TRUE){
+  models_list <- model_obj_list$models_list
+  save_sesults_path_pre <- file.path(save_results_path, "pre_predictions")
+    if (!dir.exists(save_sesults_path_pre)){
+      dir.create(save_sesults_path_pre)
+    }
+  for (i in names(models_list)){
+      baseline_obj <- models_list[[i]]
+      pre_prediction <- baseline_obj$train
+      pre_prediction$prediction <- baseline_obj$fitting
+      pre_prediction <- dplyr::select(pre_prediction,time,prediction,Temp)
+      pre_prediction_file_name <- file.path(save_sesults_path_pre,
+                                            paste("pre_prediction_",i,sep=""))
+      write.csv(pre_prediction,
+                file = pre_prediction_file_name, 
+                row.names = FALSE) 
+  }
+  if (post){
+    save_sesults_path_post <- file.path(save_results_path, "post_predictions")
+    if (!dir.exists(save_sesults_path_post)){
+      dir.create(save_sesults_path_post)
+    }
+    for (i in names(models_list)){
+      baseline_obj <- models_list[[i]]
+      post_prediction <- baseline_obj$pred
+      post_prediction$prediction <- baseline_obj$prediction
+      post_prediction <- dplyr::select(post_prediction,time,prediction,Temp)
+      post_prediction_file_name <- file.path(save_sesults_path_post,
+                                             paste("post_prediction_",i,sep=""))
+      write.csv(post_prediction,
+                file = post_prediction_file_name, 
+                row.names = FALSE) 
+    } 
+  }
 }
