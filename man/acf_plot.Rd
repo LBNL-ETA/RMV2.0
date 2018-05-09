@@ -15,5 +15,5 @@ acf_plot(baseline_obj, lag_max = 12)
 A ggplot object
 }
 \description{
-\code{acf_plot} A function that create an autocorrelation plot of the baseline model residual
+\code{acf_plot} A function that creates an autocorrelation plot of the baseline model residual
 }

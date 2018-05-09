@@ -2,7 +2,7 @@
 % Please edit documentation in R/preprocessing.R
 \name{to_exclude}
 \alias{to_exclude}
-\title{Exclude data for given intervals}
+\title{Exclude data from given intervals}
 \usage{
 to_exclude(Data, intervals_to_exclude)
 }
@@ -15,5 +15,5 @@ to_exclude(Data, intervals_to_exclude)
 A dataframe containing the remaining observations
 }
 \description{
-\code{to_exclude} This function exclude data for given intervals
+\code{to_exclude} This function exclude data from given intervals
 }

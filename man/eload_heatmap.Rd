@@ -14,5 +14,5 @@ eload_heatmap(Data, title = NULL, colors = colorRamps::matlab.like(100),
 A plot_ly object
 }
 \description{
-\code{eload_heatmap} A function that create a heatmap plot of eload where xaxis corresponds to the time of the week and yaxis corresponds to the weeks
+\code{eload_heatmap} A function that creates a heatmap plot of eload where xaxis corresponds to the time of the week and yaxis corresponds to the weeks
 }

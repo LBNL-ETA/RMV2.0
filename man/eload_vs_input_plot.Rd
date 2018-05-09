@@ -13,5 +13,5 @@ eload_vs_input_plot(Data, input = "Temp")
 A ggplot object
 }
 \description{
-\code{eload_vs_Temp_plot} A function that create a scatterplot of eload vs. Temperature
+\code{eload_vs_Temp_plot} A function that creates a scatterplot of eload vs. Temperature
 }

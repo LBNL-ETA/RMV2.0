@@ -17,5 +17,5 @@ a savings object, which is a list with the following components:
 }
 }
 \description{
-\code{savings} This function compute the estimated savings using the predicted data of the post period.
+\code{savings} This function computes the estimated savings using the predicted data of the post period.
 }

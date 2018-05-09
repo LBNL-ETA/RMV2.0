@@ -13,5 +13,5 @@ errors_vs_input_plot(baseline_obj, input = "Temp")
 A ggplot object
 }
 \description{
-\code{errors_vs_Temp_plot} A function that create a scatterplot of the baseline model errors vs. Temperature  data produced by the baseline model
+\code{errors_vs_Temp_plot} A function that creates a scatterplot of the baseline model errors vs. Temperature  data produced by the baseline model
 }

@@ -12,17 +12,18 @@ train_model(var_out, screen = T, Model = "TOWT", pam_list = NULL,
 
 \item{screen}{Boolean that determines if the analysis is a screening or a
 savings analysis. If it's a screening then the baseline model will return only
-the fitting results of the pre-installation. While if it's savings analysis the
-baseline model will also return the prediction for the post-installation period}
+the fitting results of the pre-installation period. While if it's savings analysis the
+baseline model will also return the predictions for the post-installation period}
 
-\item{Model}{Character string that correspond to the name of the model}
+\item{Model}{Character string that correspond to the name of the used model}
 
-\item{pam_list}{A list with information about the hyperparameters of the considel model}
+\item{pam_list}{A list with information about the hyperparameters of the considered model}
 
-\item{days_off_path}{A path of the file that include the date of the days off}
+\item{days_off_path}{A path of the file that include the date of the days off (i.e., holidays)}
 }
 \value{
-train_model a list
+train_model a list that contains a list of the results and a vector of indices data 
+where the model failed to produce a result
 }
 \description{
 \code{train_model} This function is used by the shiny application to train

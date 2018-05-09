@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{detect_interval}
 \alias{detect_interval}
-\title{Compute the granularity of the data}
+\title{Compute the granularity of the time series}
 \usage{
 detect_interval(Data)
 }
@@ -10,8 +10,8 @@ detect_interval(Data)
 \item{Data}{A data frame that contains time column}
 }
 \value{
-A value that correspond to the interval between the observations in minutes
+A numeric that corresponds to the interval between the observations in minutes
 }
 \description{
-\code{detect_interval} This function computes the granularity of the data
+\code{detect_interval} This function computes the granularity of the time series
 }

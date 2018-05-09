@@ -7,7 +7,7 @@
 time_format(Data, format)
 }
 \arguments{
-\item{format}{A character string that define the actual format of teh timestamps.
+\item{format}{A character string that defines the actual format of the timestamps.
 Use the description of the base R function \emph{strptime} to define the format.}
 
 \item{data}{A data frame that contains time column}

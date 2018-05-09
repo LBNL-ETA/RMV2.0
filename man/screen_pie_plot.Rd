@@ -13,5 +13,5 @@ screen_pie_plot(screen_summary_list)
 A plot_ly object
 }
 \description{
-\code{screen_pie_plot} A function that create a pie plot the screening results
+\code{screen_pie_plot} A function that creates a pie plot the screening results
 }

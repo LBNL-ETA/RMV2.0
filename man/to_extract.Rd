@@ -2,7 +2,7 @@
 % Please edit documentation in R/preprocessing.R
 \name{to_extract}
 \alias{to_extract}
-\title{Extract data for given intervals}
+\title{Extract data from given intervals}
 \usage{
 to_extract(Data, intervals_to_extract = NULL, start = NULL, end = NULL)
 }
@@ -11,9 +11,9 @@ to_extract(Data, intervals_to_extract = NULL, start = NULL, end = NULL)
 
 \item{intervals_to_extract}{A path to the file with intervals to extract}
 
-\item{start}{The start date of teh interval to exclude}
+\item{start}{The start date of the interval to exclude}
 
-\item{end}{The end date of teh interval to exclude}
+\item{end}{The end date of the interval to exclude}
 }
 \value{
 a to_extract object, which is a list with the following components:
@@ -23,5 +23,5 @@ a to_extract object, which is a list with the following components:
 }
 }
 \description{
-\code{to_extract} This function extract data for given intervals
+\code{to_extract} This function extract data from given intervals
 }

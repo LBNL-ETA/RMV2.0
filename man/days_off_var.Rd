@@ -2,17 +2,17 @@
 % Please edit documentation in R/utils.R
 \name{days_off_var}
 \alias{days_off_var}
-\title{Create a new binary variable based on the dates of days off (e.a., holidays).}
+\title{Create a new binary variable based on the dates of days off (e.g., holidays).}
 \usage{
 days_off_var(days_off_path, Data)
 }
 \arguments{
 \item{days_off_path}{The path of the file from which the date data of days off (e.g., holidays) are to be read.}
 
-\item{Data}{A dataframe of training or prediction data.}
+\item{Data}{A dataframe of pre or post-installation data.}
 }
 \value{
-A dataframe of training or prediction data including the new varable that correspond
+A dataframe of pre or post-installation data including the new variable that correspond
 to the days off.
 }
 \description{

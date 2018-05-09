@@ -14,5 +14,5 @@ savings_heatmap(baseline_obj, title = NULL,
 A plot_ly object
 }
 \description{
-\code{savings_heatmap} A function that create a heatmap plot of savings where xaxis corresponds to the time of the week and yaxis corresponds to the weeks
+\code{savings_heatmap} A function that creates a heatmap plot of savings where xaxis corresponds to the time of the week and yaxis corresponds to the weeks
 }

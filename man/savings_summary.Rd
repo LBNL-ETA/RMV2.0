@@ -16,5 +16,5 @@ a dataframe of the savings summary
 }
 \description{
 \code{savings_summary} This function is used by the shiny application
-to produce the savings and the uncertainties summary table
+to produce the savings summary table
 }

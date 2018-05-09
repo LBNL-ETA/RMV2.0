@@ -9,9 +9,9 @@ save_session(save_dir, project_name, results)
 \arguments{
 \item{save_dir}{the path of the folder where the session will be saved}
 
-\item{project_name}{the name of the project (given by teh user)}
+\item{project_name}{the name of the project (given by the user)}
 
-\item{the}{shiny reactiveValues object where the results are stored}
+\item{shiny}{reactiveValues object where the results are stored}
 }
 \description{
 \code{save_session} This function is used by the shiny application to save the

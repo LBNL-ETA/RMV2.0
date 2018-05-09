@@ -8,13 +8,13 @@ create_date_var(Data, intervals_path = NULL, start = NULL, end = NULL,
   var_name = "date_off")
 }
 \arguments{
-\item{Data}{A dataframe of training or prediction data.}
+\item{Data}{A dataframe of pre or post-installation data.}
 
 \item{intervals_path}{A path to the file with intervals to extract}
 
 \item{start}{A vector of start date of each interval}
 
-\item{end}{A vector of end date of each interval note that start vector and
+\item{end}{A vector of end date of each interval. Note that start vector and
 end vector should have the same length}
 
 \item{var_name}{A string character that correspond to the name of the new
@@ -25,7 +25,7 @@ a dataframe with the additional input variable
 }
 \description{
 \code{create_date_var} This function Create a binary input variable corresponding
-to given intervals if the time steps correspond to a date within the given
-interval then the value of the input variable will be equal to 1 and if not it
+to given intervals if the time stamps correspond to a date within the given
+interval then the value of the input variables will be equal to 1 and if not it
 will be equal to 0
 }

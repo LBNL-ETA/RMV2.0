@@ -8,7 +8,7 @@ cpt_det(baseline_obj, interval)
 }
 \arguments{
 \item{baseline_obj}{A baseline object, which is produced by the baseline
-function (e.g., towt_baseline)}
+function (e.g., towt_baseline, gbm_baseline)}
 }
 \value{
 a cpt_det object, which is a list with the following components:
@@ -21,7 +21,7 @@ a cpt_det object, which is a list with the following components:
 }
 }
 \description{
-\code{cpt_det} This function identify non-routine events in the savings
-time series it uses cpt.meanvar function from changepoint package to identify
+\code{cpt_det} This function identifies potential non-routine events in the savings
+time series it uses cpt.meanvar function from changepoint R package to identify
 changes in mean and variance
 }

@@ -13,5 +13,5 @@ savings_results_plot(savings_res_tab)
 A plot_ly object
 }
 \description{
-\code{savings_results_plot} A function that create a barplot of savings estimation and their uncertainties
+\code{savings_results_plot} A function that creates a barplot of savings estimation and their uncertainties
 }

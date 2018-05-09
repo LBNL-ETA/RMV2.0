@@ -40,5 +40,5 @@ a towt_baseline object, which alist with the following components:
 }
 }
 \description{
-\code{towt_baseline} This function build a baseline model using gradient boosting machine algorithm.
+\code{towt_baseline} This function builds a baseline model using gradient boosting machine algorithm.
 }

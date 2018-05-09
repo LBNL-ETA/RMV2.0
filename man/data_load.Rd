@@ -13,8 +13,8 @@ data_load(files_path, files_names, var_out, Post = T, clean = T)
 
 \item{var_out}{a shiny reactiveValues object where the data are stored}
 
-\item{Post}{Boolean that determine if the data is post-installation or
-post-installation. If true then the data is considered as post-installation.}
+\item{Post}{Boolean that determine if the data are pre-installation or
+post-installation. If true then the data are considered as post-installation.}
 
 \item{clean}{Boolean that determine if an automatic data cleaning is performed.}
 }
@@ -23,5 +23,5 @@ var_out reactiveValues object with a new object where the loaded data are stored
 }
 \description{
 \code{data_load} This function is used by the shiny application to load
-pre or post dataset and store it within a shiny reactiveValues object
+pre or post data and store them within a shiny reactiveValues object
 }

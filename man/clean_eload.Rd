@@ -20,7 +20,7 @@ to define the thresholding value. The default value is 0.2 which correspond to \
 A dataframe that correspond to the cleaned data
 }
 \description{
-\code{clean_eload} This function remove the observations which have negative eload values or with eload
+\code{clean_eload} This function removes the observations, which have negative eload values or with eload
 values higher or lower than some upper and lower thresholds. The upper threshold is defined as
 \emph{n} percent higher than the quantile corresponding to the given upper probability \emph{U_ptresh} and the lower
  threshold is defined as \emph{n} percent lower than the quantile corresponding to the given lower probability \emph{L_ptresh}.

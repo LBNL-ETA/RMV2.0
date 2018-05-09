@@ -10,10 +10,10 @@ clean_Temp_2(Data, thresh = 5)
 \item{thresh}{A numeric that correspond to the number of similar successive
 temperature values}
 
-\item{data}{A dataframe of training or prediction data.}
+\item{data}{A dataframe of pre or post-installation data.}
 }
 \value{
-A dataframe that correspond to the cleaned training or prediction data
+A dataframe that correspond to the cleaned pre or post-installation data
 }
 \description{
 \code{clean_Temp_2} This function remove the period of time where temperature

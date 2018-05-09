@@ -7,7 +7,7 @@
 clean_Temp(Data, maxT = 130, minT = -80)
 }
 \arguments{
-\item{Data}{A dataframe of training or prediction data.}
+\item{Data}{A dataframe of pre or post-installation data.}
 
 \item{maxT}{A numeric that correspond to the temperature above which the corresponding
 observations will be excluded}
@@ -16,7 +16,7 @@ observations will be excluded}
 observations will be excluded}
 }
 \value{
-A dataframe that correspond to the cleaned training or prediction data
+A dataframe that correspond to the cleaned pre or post-installation data
 }
 \description{
 \code{clean_Temp} This function remove the observations which have Temperature values higher or lower

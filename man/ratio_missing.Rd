@@ -10,7 +10,7 @@ ratio_missing(Data, interval)
 \item{Data}{A data frame that contains time column}
 }
 \value{
-A value that correspond to the missing values ratio
+A numeric that corresponds to the missing values ratio
 }
 \description{
 \code{ratio_missing} This function estimates the ratio of missing observations

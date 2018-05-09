@@ -7,7 +7,7 @@
 pred_accuracy(baseline_obj)
 }
 \arguments{
-\item{towt_baseline_obj}{A towt_baseline object, which is produced by the towt_baseline function}
+\item{baseline_obj}{A baseline object, which is produced by the towt_baseline or by gbm_baseline function}
 }
 \value{
 A dataframe with where the columns correspond to R2, CV(RMSE) and NMBE

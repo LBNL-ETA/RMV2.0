@@ -13,5 +13,5 @@ act_vs_fit_plot(baseline_obj)
 A ggplot object
 }
 \description{
-\code{act_vs_fit_plot} A function that create a scatterplot of the actual vs. fitted data produced by the baseline model
+\code{act_vs_fit_plot} A function that creates a scatterplot of the actual vs. fitted data produced by the baseline model
 }

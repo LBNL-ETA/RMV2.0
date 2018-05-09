@@ -7,9 +7,9 @@
 number_of_days(Data)
 }
 \arguments{
-\item{Data}{A data frame that contains time column}
+\item{A}{numeric that corresponds to the number of days}
 }
 \description{
-\code{number_of_days} This function computes the number of days for which data
+\code{number_of_days} This function computes the number of days for which observations
 are available
 }
