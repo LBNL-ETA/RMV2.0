@@ -1,6 +1,6 @@
 
 
-<p align="center"><img width="20%" src="User_Guide_Figures/logo.svg" /></p>
+<p align="center"><img width="20%" src="docs/User_Guide_Figures/logo.svg" /></p>
 
 # RMV2.0 - LBNL M&V2.0 Tool
 
