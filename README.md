@@ -42,4 +42,4 @@ devtools::install_github("LBNL-ETA/RMV2.0")
 
 ## For More Information
 
-Check out the [project site](https://lbnl-eta.github.io/RMV2.0/) for all the details like
+Check out the [project site](https://lbnl-eta.github.io/RMV2.0/) for more details.
