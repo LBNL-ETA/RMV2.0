@@ -1,14 +1,14 @@
 #-------------------------------------------------------------------------------
+# RMV2.0 (version 1.1.0)
 # LBNL MV 2.0 Toolbox
 # Samir Touzani, PhD
-# savings.R
 #-------------------------------------------------------------------------------
 
 
 
 #' Function to calculate the savings of the post period.
 #'
-#' \code{savings} This function compute the estimated savings using the predicted data of the post period.
+#' \code{savings} This function computes the estimated savings using the predicted data of the post period.
 #'
 #'
 #' @param baseline_obj  A baseline object, which is produced by the baseline function
@@ -41,7 +41,7 @@ savings <- function(baseline_obj){
 #
 # #' Function to estimate the savings uncertainties using ASHRAE 14 definition
 # #'
-# #' \code{savings_uncert} This function compute the estimated savings uncertainties using ASHRAE 14 definition
+# #' \code{savings_uncert} This function computes the estimated savings uncertainties using ASHRAE 14 definition
 # #'
 # #'
 # #' @param baseline_obj  A baseline object, which is produced by the baseline function (e.g., towt_baseline)
@@ -120,7 +120,7 @@ savings <- function(baseline_obj){
 #' Savings summary
 #'
 #' \code{savings_summary} This function is used by the shiny application
-#' to produce the savings and the uncertainties summary table
+#' to produce the savings summary table
 #'
 #' @param sav_out a shiny reactiveValues object where the baseline object and the pre/post data are stored
 ##' @param inCL a numerical value corresponding to the user specified confidence level

@@ -1,11 +1,17 @@
 #-------------------------------------------------------------------------------
+# RMV2.0 (version 1.1.0)
+# LBNL MV 2.0 Toolbox
+# Samir Touzani, PhD
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
 # These codes are an adaptation of the original codes that can be found on:
 # https://bitbucket.org/berkeleylab/eetd-loadshape
 #-------------------------------------------------------------------------------
 
 #' Time Of the Week and Temperature baseline model function.
 #'
-#' \code{towt_baseline} This function build a baseline model using gradient boosting machine algorithm.
+#' \code{towt_baseline} This function builds a baseline model using gradient boosting machine algorithm.
 #'
 #'
 #' @param train_path The path of the file from which the training data are to be read from.

@@ -2,7 +2,7 @@
 % Please edit documentation in R/visualize.R
 \name{cpt_save_plot}
 \alias{cpt_save_plot}
-\title{Plot the residual/savings and teh idetified change points in the post period}
+\title{Plot the residual/savings and the identified change points in the post period}
 \usage{
 cpt_save_plot(baseline_obj, cpt_det_obj, title = NULL, plot_group = NULL)
 }

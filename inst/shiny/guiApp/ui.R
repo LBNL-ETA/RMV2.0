@@ -1,7 +1,7 @@
 #-------------------------------------------------------------------------------
+# RMV2.0 (version 1.1.0)
 # LBNL MV 2.0 Toolbox
 # Samir Touzani, PhD
-# ui.R
 #-------------------------------------------------------------------------------
 
 #===============================================================================
@@ -18,8 +18,10 @@ dashboardPage(skin = "red",
                  icon = icon("home")),
         menuItem("Project Setup",
                  tabName = "initialization",
-                 icon = icon("tasks"))
-
+                 icon = icon("tasks")),
+        menuItem("Help",
+                 tabName = "help",
+                 icon = icon("question-circle"))
       )#end sidebarMenu
     ),#end conditional panel
 
@@ -55,7 +57,8 @@ dashboardPage(skin = "red",
                    #             tabName = "uncertEstimation_sc"),
                    menuSubItem("Summary",
                                icon = icon("dashboard"),
-                               tabName = "summary_sc")
+                               tabName = "summary_sc"),
+                   uiOutput("save_pred_sc_Ui")
                  ),
 
                  startExpanded = T
@@ -147,6 +150,9 @@ dashboardPage(skin = "red",
                                icon = icon("dashboard"),
                                tabName = "summary_sav")
                  ),
+                 conditionalPanel(condition = "input.Train_go_sav",
+                   uiOutput("save_pred_sav_Ui")
+                 ),
 
                  startExpanded = T
         ),
@@ -212,6 +218,23 @@ dashboardPage(skin = "red",
           fluidRow(
             div(img(src='logo.svg'),style="text-align: center;")
           )# end of fluidRow
+        )# end of fluidPage
+      ),#end of tabItem
+      tabItem(tabName = "help",
+        fluidPage(title = "Help",
+          #fluidRow(
+            column(width = 2),
+            column(width = 8,
+              box(title = "",
+                  width = 12,
+                  solidHeader = F,
+                  status = "info",
+                  includeMarkdown(system.file("shiny/guiApp/www", "User_Guide.md", package = "RMV2.0"))
+                  #htmltools::tags$iframe(src = 'User_Guide.html', width = '100%',height = '1000px')
+              )#end box
+            ),#end column
+            column(width = 2)
+          #)# end of fluidRow
         )# end of fluidPage
       ),#end of tabItem
 
@@ -509,7 +532,7 @@ dashboardPage(skin = "red",
                    conditionalPanel(condition = "input.pre_plot_go_sc",
                      tabBox(title = tagList(shiny::icon("line-chart"), ""),
                             width = 9,
-                       tabPanel("Time Serie Pre-Installation",
+                       tabPanel("Time Series Pre-Installation",
                                 width =12,
                                 solidHeader = F,
                                 status = "info",
@@ -560,7 +583,7 @@ dashboardPage(skin = "red",
                                      "Include Days Off as independent variable:",
                                      c("No" = "no_sc",
                                        "Default US Holidays
-                                       (from 2007 to 2017)" = "def_d_off_sc",
+                                       (from 2006 to 2018)" = "def_d_off_sc",
                                        "Select a new Days Off file" = "yes_sc")),
                         conditionalPanel(condition = "input.d_off_GBM_sc == 'yes_sc'",
                           fileInput("d_off_path_sc",
@@ -707,7 +730,7 @@ dashboardPage(skin = "red",
                  conditionalPanel(condition = "input.base_plot_go_sc",
                    tabBox(title = tagList(icon("line-chart"), ""),
                           width = 9,
-                     tabPanel("Time Serie Plot",
+                     tabPanel("Time Series Plot",
                               width =12,
                               solidHeader = F,
                               status = "info",
@@ -726,7 +749,7 @@ dashboardPage(skin = "red",
                               uiOutput('radio_plot_err_sc'),
                               plotOutput("scatter_plot_err_input_sc")
                      ),#end of tabPanel
-                     tabPanel("Residual Autocorrelation Plot",
+                     tabPanel("Residuals Autocorrelation Plot",
                               width =8,
                               solidHeader = F,
                               status = "info",
@@ -864,7 +887,7 @@ dashboardPage(skin = "red",
                 tabBox(title = tagList(shiny::icon("line-chart"),
                                        "Pre-Installation plots"),
                        width = 6,
-                  tabPanel("Time Serie Pre-Installation",
+                  tabPanel("Time Series Pre-Installation",
                            width =12,
                            solidHeader = F,
                            status = "info",
@@ -891,7 +914,7 @@ dashboardPage(skin = "red",
                 tabBox(title = tagList(shiny::icon("line-chart"),
                                        "Post-Installation plots"),
                        width = 6,
-                  tabPanel("Time Serie Post-Installation",
+                  tabPanel("Time Series Post-Installation",
                            width =12,
                            solidHeader = F,
                            status = "info",
@@ -940,7 +963,7 @@ dashboardPage(skin = "red",
                                       "Include Days Off as independent variable:",
                                       c("No" = "no_sav",
                                         "Default US Holidays
-                                        (from 2007 to 2017)" = "def_d_off_sav",
+                                        (from 2006 to 2018)" = "def_d_off_sav",
                                         "Select a new Days Off file" = "yes_sav")),
                          conditionalPanel(condition = "input.d_off_GBM_sav == 'yes_sav'",
                            fileInput("d_off_path_sav",
@@ -1088,7 +1111,7 @@ dashboardPage(skin = "red",
               conditionalPanel(condition = "input.base_plot_go_sav",
                 tabBox(title = tagList(icon("line-chart"), "Plots Baseline Model Results"),
                        width = 12,
-                  tabPanel("Time Serie Plot",
+                  tabPanel("Time Series Plot",
                            width =12,
                            solidHeader = F,
                            status = "info",
@@ -1111,7 +1134,7 @@ dashboardPage(skin = "red",
                       )#end of column
                     )#end of fluidRow
                   ),#end of tabPanel
-                  tabPanel("Scatter plot residual vs. input",
+                  tabPanel("Scatter plot residuals vs. input",
                            width =12,
                            solidHeader = F,
                            status = "info",
@@ -1122,7 +1145,7 @@ dashboardPage(skin = "red",
                       )#end of column
                     )#end of fluidRow
                   ),#end of tabPanel
-                  tabPanel("Residual Autocorrelation Plot",
+                  tabPanel("Residuals Autocorrelation Plot",
                            width =12,
                            solidHeader = F,
                            status = "info",
@@ -1226,7 +1249,7 @@ dashboardPage(skin = "red",
                    tabBox(title = tagList(shiny::icon("line-chart"),
                                           "Savings plots"),
                           width = 12,
-                     tabPanel("Savings Time Serie",
+                     tabPanel("Savings Time Series",
                               width =12,
                               solidHeader = F,
                               status = "info",

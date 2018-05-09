@@ -1,7 +1,7 @@
 #-------------------------------------------------------------------------------
+# RMV2.0 (version 1.1.0)
 # LBNL MV 2.0 Toolbox
 # Samir Touzani, PhD
-# plots_fun.R
 #-------------------------------------------------------------------------------
 
 
@@ -11,7 +11,7 @@
 
 #' Plot of the actual pre or post installation data
 #'
-#' \code{act_plot} a function that generate a dygraph plot of the actual observations (eload and Temp)
+#' \code{act_plot} a function that generates a dygraph plot of the actual observations (eload and Temp)
 #'
 #'
 #' @param Data A data frame of the actual observations
@@ -126,7 +126,7 @@ axis_range <- function(Data_1, Data_2){
 
 #' eload vs. Temperature scatter plot
 #'
-#' \code{eload_vs_Temp_plot} A function that create a scatterplot of eload vs. Temperature
+#' \code{eload_vs_Temp_plot} A function that creates a scatterplot of eload vs. Temperature
 #'
 #'
 #' @param Data a dataframes with eload and Temp columns
@@ -152,7 +152,7 @@ eload_vs_input_plot <- function(Data,input = "Temp"){
 
 #' actual vs. fitted scatter plot
 #'
-#' \code{act_vs_fit_plot} A function that create a scatterplot of the actual vs. fitted data produced by the baseline model
+#' \code{act_vs_fit_plot} A function that creates a scatterplot of the actual vs. fitted data produced by the baseline model
 #'
 #'
 #' @param baseline_obj A baseline object, which is produced by the baseline model function
@@ -181,7 +181,7 @@ act_vs_fit_plot <- function(baseline_obj){
 
 #' errors vs. Temperature scatter plot
 #'
-#' \code{errors_vs_Temp_plot} A function that create a scatterplot of the baseline model errors vs. Temperature  data produced by the baseline model
+#' \code{errors_vs_Temp_plot} A function that creates a scatterplot of the baseline model errors vs. Temperature  data produced by the baseline model
 #'
 #'
 #' @param baseline_obj A baseline object, which is produced by the baseline model function
@@ -213,7 +213,7 @@ errors_vs_input_plot <- function(baseline_obj,input = "Temp"){
 
 #' Residual autocorrelation plot
 #'
-#' \code{acf_plot} A function that create an autocorrelation plot of the baseline model residual
+#' \code{acf_plot} A function that creates an autocorrelation plot of the baseline model residual
 #'
 #'
 #' @param baseline_obj A baseline object, which is produced by the baseline model function
@@ -243,7 +243,7 @@ acf_plot <- function(baseline_obj,lag_max = 12){
 
 #' Savings barplot
 #'
-#' \code{savings_results_plot} A function that create a barplot of savings estimation and their uncertainties
+#' \code{savings_results_plot} A function that creates a barplot of savings estimation and their uncertainties
 #'
 #'
 #' @param savings_res_tab  a data frame produced by the savings_results function
@@ -294,7 +294,7 @@ savings_results_plot <-  function(savings_res_tab){
 
 #' Screening pie plot
 #'
-#' \code{screen_pie_plot} A function that create a pie plot the screening results
+#' \code{screen_pie_plot} A function that creates a pie plot the screening results
 #'
 #'
 #' @param screen_summary_list  a list object produced by screen_summary function
@@ -335,7 +335,7 @@ screen_pie_plot <- function(screen_summary_list){
 
 #' Eload heatmap
 #'
-#' \code{eload_heatmap} A function that create a heatmap plot of eload where xaxis corresponds to the time of the week and yaxis corresponds to the weeks
+#' \code{eload_heatmap} A function that creates a heatmap plot of eload where xaxis corresponds to the time of the week and yaxis corresponds to the weeks
 #'
 #'
 #' @param Data  a data frame to plot
@@ -394,7 +394,7 @@ eload_heatmap <- function(Data,title = NULL,
 
 #' Savings heatmap
 #'
-#' \code{savings_heatmap} A function that create a heatmap plot of savings where xaxis corresponds to the time of the week and yaxis corresponds to the weeks
+#' \code{savings_heatmap} A function that creates a heatmap plot of savings where xaxis corresponds to the time of the week and yaxis corresponds to the weeks
 #'
 #'
 #' @param baseline_obj A baseline object, which is produced by the baseline function

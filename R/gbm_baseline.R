@@ -1,11 +1,17 @@
 #-------------------------------------------------------------------------------
+# RMV2.0 (version 1.1.0)
+# LBNL MV 2.0 Toolbox
+# Samir Touzani, PhD
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
 #
 #     Gradient Boosting machine baseline model function
 #
 #-------------------------------------------------------------------------------
 #' Gradient boosting machine baseline model function.
 #'
-#' \code{gbm_baseline} This function build a baseline model using gradient boosting machine algorithm.
+#' \code{gbm_baseline} This function builds a baseline model using gradient boosting machine algorithm.
 #'
 #'
 #' @param train_path The path of the file from which the training data are to be read.

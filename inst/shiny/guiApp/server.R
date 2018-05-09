@@ -1,7 +1,7 @@
 #-------------------------------------------------------------------------------
+# RMV2.0 (version 1.1.0)
 # LBNL MV 2.0 Toolbox
 # Samir Touzani, PhD
-# server.R
 #-------------------------------------------------------------------------------
 
 # change_box <- function(box, success_condition) {
@@ -28,20 +28,33 @@ shinyServer(function(input, output, session) {
   #                        Menu SideBar                                        #
   #=============================================================================
 
-      output$save_sc_Ui <- renderUI({
-        actionButton("save_sc",
-                     label = "Save",
-                     icon = icon("floppy-o"),
-                     width='80%')
-      })
+  output$save_sc_Ui <- renderUI({
+    actionButton("save_sc",
+                  label = "Save Project",
+                  icon = icon("floppy-o"),
+                  width='85%')
+  })
 
-      output$save_sav_Ui <- renderUI({
-         actionButton("save_sav",
-                      label = "Save",
-                      icon = icon("floppy-o"),
-                      width='80%')
-      })
+  output$save_pred_sc_Ui <- renderUI({
+    actionButton("save_pred_sc",
+                  label = "Save Predictions",
+                  icon = icon("floppy-o"),
+                  width='60%')
+  })
 
+  output$save_sav_Ui <- renderUI({
+      actionButton("save_sav",
+                  label = "Save Project",
+                  icon = icon("floppy-o"),
+                  width='85%')
+  })
+
+  output$save_pred_sav_Ui <- renderUI({
+      actionButton("save_pred_sav",
+                  label = "Save Predictions",
+                  icon = icon("floppy-o"),
+                  width='60%')
+  })
 
   #=============================================================================
   #                        Screening Server Functions  New Project             #
@@ -489,6 +502,12 @@ shinyServer(function(input, output, session) {
   observeEvent(input$save_sc,{
    save_session(path_save_dir_sc(),input$p_name_sc,screen_out)
 
+  })
+
+  ########################  Save the predictions ###############################
+
+  observeEvent(input$save_pred_sc,{
+   save_predictions(screen_out$model_obj_list,path_save_dir_sc(),post = FALSE)
   })
 
  #=============================================================================
@@ -1589,6 +1608,12 @@ shinyServer(function(input, output, session) {
 
   observeEvent(input$save_sav,{
    save_session(path_save_dir_sav(),input$p_name_sav,sav_out)
+  })
+
+  ########################  Save the predictions ###############################
+
+  observeEvent(input$save_pred_sav,{
+   save_predictions(sav_out$model_obj_list,path_save_dir_sav())
   })
 
   #=============================================================================

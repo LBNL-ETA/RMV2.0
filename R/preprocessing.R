@@ -1,7 +1,7 @@
 #-------------------------------------------------------------------------------
+# RMV2.0 (version 1.1.0)
 # LBNL MV 2.0 Toolbox
 # Samir Touzani, PhD
-# preprocessing.R
 #-------------------------------------------------------------------------------
 
 
@@ -11,7 +11,7 @@
 #'
 #'
 #' @param data A data frame that contains time column
-#' @param format A character string that define the actual format of teh timestamps.
+#' @param format A character string that defines the actual format of the timestamps.
 #' Use the description of the base R function \emph{strptime} to define the format.
 #' @return A data frame with timestamps converted into "%m/%d/%y %H:%M" format
 #'
@@ -72,9 +72,9 @@ convert_15min_to_1_hour <- function(Data,kWh=TRUE){
 }
 
 
-#' Exclude data for given intervals
+#' Exclude data from given intervals
 #'
-#' \code{to_exclude} This function exclude data for given intervals
+#' \code{to_exclude} This function exclude data from given intervals
 #'
 #'
 #' @param Data A dataframe
@@ -99,15 +99,15 @@ to_exclude <- function(Data,intervals_to_exclude){
   return(Data)
 }
 
-#' Extract data for given intervals
+#' Extract data from given intervals
 #'
-#' \code{to_extract} This function extract data for given intervals
+#' \code{to_extract} This function extract data from given intervals
 #'
 #'
 #' @param Data A dataframe containing all observations
 #' @param intervals_to_extract A path to the file with intervals to extract
-#' @param start The start date of teh interval to exclude
-#' @param end The end date of teh interval to exclude
+#' @param start The start date of the interval to exclude
+#' @param end The end date of the interval to exclude
 #' @return a to_extract object, which is a list with the following components:
 #' \describe{
 #'   \item{Data}{a dataframe containing the remaining observations}
@@ -160,15 +160,15 @@ to_extract <- function(Data,
 #'
 #'
 #' \code{create_date_var} This function Create a binary input variable corresponding
-#' to given intervals if the time steps correspond to a date within the given
-#' interval then the value of the input variable will be equal to 1 and if not it
+#' to given intervals if the time stamps correspond to a date within the given
+#' interval then the value of the input variables will be equal to 1 and if not it
 #' will be equal to 0
 #'
 #'
-#' @param Data A dataframe of training or prediction data.
+#' @param Data A dataframe of pre or post-installation data.
 #' @param intervals_path A path to the file with intervals to extract
 #' @param start A vector of start date of each interval
-#' @param end A vector of end date of each interval note that start vector and
+#' @param end A vector of end date of each interval. Note that start vector and
 #' end vector should have the same length
 #' @param var_name A string character that correspond to the name of the new
 #' input variable
@@ -234,7 +234,7 @@ create_date_var <- function(Data,
 
 #' Clean the elaod data
 #'
-#' \code{clean_eload} This function remove the observations which have negative eload values or with eload
+#' \code{clean_eload} This function removes the observations, which have negative eload values or with eload
 #' values higher or lower than some upper and lower thresholds. The upper threshold is defined as
 #' \emph{n} percent higher than the quantile corresponding to the given upper probability \emph{U_ptresh} and the lower
 #'  threshold is defined as \emph{n} percent lower than the quantile corresponding to the given lower probability \emph{L_ptresh}.
@@ -269,13 +269,13 @@ clean_eload <- function(Data,n = .2, L_ptresh = 0.005, U_ptresh = 0.995){
 #'  than some predefined extreme values.
 #'
 #'
-#' @param Data A dataframe of training or prediction data.
+#' @param Data A dataframe of pre or post-installation data.
 #' @param maxT A numeric that correspond to the temperature above which the corresponding
 #' observations will be excluded
 #' @param minT A numeric that correspond to the temperature below which the corresponding
 #' observations will be excluded
 
-#' @return A dataframe that correspond to the cleaned training or prediction data
+#' @return A dataframe that correspond to the cleaned pre or post-installation data
 #'
 #' @export
 
@@ -292,10 +292,10 @@ clean_Temp <- function(Data, maxT = 130, minT= -80){
 #' observations do not change.
 #'
 #'
-#' @param data A dataframe of training or prediction data.
+#' @param data A dataframe of pre or post-installation data.
 #' @param thresh A numeric that correspond to the number of similar successive
 #' temperature values
-#' @return A dataframe that correspond to the cleaned training or prediction data
+#' @return A dataframe that correspond to the cleaned pre or post-installation data
 #'
 #' @export
 

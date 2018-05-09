@@ -1,7 +1,7 @@
 #-------------------------------------------------------------------------------
+# RMV2.0 (version 1.1.0)
 # LBNL MV 2.0 Toolbox
 # Samir Touzani, PhD
-# utils.R
 #-------------------------------------------------------------------------------
 
 ###############################################################################
@@ -15,8 +15,8 @@
 #'  results of the session
 #'
 #' @param save_dir the path of the folder where the session will be saved
-#' @param project_name the name of the project (given by teh user)
-#' @param the shiny reactiveValues object where the results are stored
+#' @param project_name the name of the project (given by the user)
+#' @param shiny reactiveValues object where the results are stored
 #'
 #' @export
 
@@ -58,10 +58,10 @@ load_session <- function(load_path){
 
 #' Compute number of days in the data
 #'
-#' \code{number_of_days} This function computes the number of days for which data
+#' \code{number_of_days} This function computes the number of days for which observations
 #' are available
 #'
-#' @param Data A data frame that contains time column
+#' @param A numeric that corresponds to the number of days
 #'
 #' @export
 
@@ -72,12 +72,12 @@ number_of_days <- function(Data){
   return(num)
 }
 
-#' Compute the granularity of the data
+#' Compute the granularity of the time series
 #'
-#' \code{detect_interval} This function computes the granularity of the data
+#' \code{detect_interval} This function computes the granularity of the time series
 #'
 #' @param Data A data frame that contains time column
-#' @return A value that correspond to the interval between the observations in minutes
+#' @return A numeric that corresponds to the interval between the observations in minutes
 #'
 #' @export
 
@@ -96,7 +96,7 @@ detect_interval <- function(Data){
 #' by calculating the missing time steps
 #'
 #' @param Data A data frame that contains time column
-#' @return A value that correspond to the missing values ratio
+#' @return A numeric that corresponds to the missing values ratio
 #'
 #' @export
 
@@ -112,13 +112,13 @@ ratio_missing <- function(Data,interval){
 #' Load data into the shiny application
 #'
 #' \code{data_load} This function is used by the shiny application to load
-#' pre or post dataset and store it within a shiny reactiveValues object
+#' pre or post data and store them within a shiny reactiveValues object
 #'
 #' @param files_path a list that contains all the paths of the considered data files
 #' @param files_names a list that contains all the files names
 #' @param var_out a shiny reactiveValues object where the data are stored
-#' @param Post Boolean that determine if the data is post-installation or
-#' post-installation. If true then the data is considered as post-installation.
+#' @param Post Boolean that determine if the data are pre-installation or
+#' post-installation. If true then the data are considered as post-installation.
 #' @param clean Boolean that determine if an automatic data cleaning is performed.
 #' @return var_out reactiveValues object with a new object where the loaded data are stored
 #'
@@ -191,12 +191,13 @@ data_load <- function(files_path, files_names, var_out, Post = T, clean = T){
 #' @param var_out a shiny reactiveValues object where the taining data are stored
 #' @param screen Boolean that determines if the analysis is a screening or a
 #' savings analysis. If it's a screening then the baseline model will return only
-#' the fitting results of the pre-installation. While if it's savings analysis the
-#' baseline model will also return the prediction for the post-installation period
-#' @param Model Character string that correspond to the name of the model
-#' @param pam_list A list with information about the hyperparameters of the considel model
-#' @param days_off_path A path of the file that include the date of the days off
-#' @return train_model a list
+#' the fitting results of the pre-installation period. While if it's savings analysis the
+#' baseline model will also return the predictions for the post-installation period
+#' @param Model Character string that correspond to the name of the used model
+#' @param pam_list A list with information about the hyperparameters of the considered model
+#' @param days_off_path A path of the file that include the date of the days off (i.e., holidays)
+#' @return train_model a list that contains a list of the results and a vector of indices data 
+#' where the model failed to produce a result
 #'
 #' @export
 
@@ -394,16 +395,16 @@ time_features <- function(data){
 }
 
 
-#' Create a new binary variable based on the dates of days off (e.a., holidays).
+#' Create a new binary variable based on the dates of days off (e.g., holidays).
 #'
 #' \code{days_off_var} This function create a new binary variable that correspond to the dates of days off,
 #' which holidays or days when the building is not occupied.
 #'
 #'
 #' @param days_off_path The path of the file from which the date data of days off (e.g., holidays) are to be read.
-#' @param Data A dataframe of training or prediction data.
+#' @param Data A dataframe of pre or post-installation data.
 #'
-#' @return A dataframe of training or prediction data including the new varable that correspond
+#' @return A dataframe of pre or post-installation data including the new variable that correspond
 #' to the days off.
 #'
 #' @export
@@ -423,7 +424,7 @@ days_off_var <- function(days_off_path,Data){
 #' \code{pred_accuracy} This function compute the following prediction accuracy metrics:  R2, CV(RMSE) and NBME
 #'
 #'
-#' @param towt_baseline_obj A towt_baseline object, which is produced by the towt_baseline function
+#' @param baseline_obj A baseline object, which is produced by the towt_baseline or by gbm_baseline function
 #' @return A dataframe with where the columns correspond to R2, CV(RMSE) and NMBE
 #'
 #' @export

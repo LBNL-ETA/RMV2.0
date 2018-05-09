@@ -1,7 +1,7 @@
 Package: RMV2.0
 Type: Package
 Title: M&V2.0 Using R and Shiny
-Version: 1.0.0
+Version: 1.1.0
 Authors@R: person("Samir", "Touzani", email = "stouzani@lbl.gov", role = c("aut", "cre"))
 Description: RMV2.0 is an open-source R package for performing measurement and
     verification 2.0 (M&V 2.0)for Commercial Buildings. Aimed to run locally,
@@ -15,7 +15,7 @@ Description: RMV2.0 is an open-source R package for performing measurement and
     whole-building projects; quantify savings at both a
     building and portfolio level; identify potential non-routine events (NRE)
     in the post-installation period using statistical methodology.
-License: What license is it under?
+License: Refer to License.txt file
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
@@ -37,5 +37,8 @@ Imports:
     colorRamps (>= 2.3),
     xgboost (>= 0.6-4),
     caret (>= 6.0-77),
-	   V8 (>= 1.5),
-    forecast (>= 8.2)
+	V8 (>= 1.5),
+    forecast (>= 8.2),
+    knitr (>= 1.20),
+    rmarkdown (>= 1.9)
+

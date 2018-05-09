@@ -1,17 +1,17 @@
 #-------------------------------------------------------------------------------
+# RMV2.0 (version 1.1.0)
 # LBNL MV 2.0 Toolbox
 # Samir Touzani, PhD
-# nrevent.R
 #-------------------------------------------------------------------------------
 
 #' Function to detect potential non-routine events
 #'
-#' \code{cpt_det} This function identify non-routine events in the savings
-#' time series it uses cpt.meanvar function from changepoint package to identify
+#' \code{cpt_det} This function identifies potential non-routine events in the savings
+#' time series it uses cpt.meanvar function from changepoint R package to identify
 #' changes in mean and variance
 #'
 #' @param baseline_obj  A baseline object, which is produced by the baseline
-#' function (e.g., towt_baseline)
+#' function (e.g., towt_baseline, gbm_baseline)
 #'
 #' @return a cpt_det object, which is a list with the following components:
 #' \describe{
