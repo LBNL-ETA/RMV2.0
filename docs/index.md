@@ -15,28 +15,28 @@ Table of Contents:
 + [**Installation**](#installation)
 + [**Input Data Format**](#input-data-format)
     + [Timestamps Format](#timestamps-format)
-    + [Handling Holidays/Vacations Periods](#handling-holidays/vacations-periods)
-+ [**RMV2.0 Using the graphical user interface (GUI)**](#RMV2.0-Using-the-graphical-user-interface-(GUI))
+    + [Handling Holidays/Vacations Periods](#handling-holidays-vacations-periods)
++ [**RMV2.0 Using the graphical user interface (GUI)**](#gui)
     + [Screening Analysist](#screening-analysis)
-        + [New Screening Analysis Project](#New-screening-analysis-project)
+        + [New Screening Analysis Project](#new-screening-analysis-project)
         + [Data Overview](#data-overview-sc)
         + [Create Baseline Models](#create-baseline-models-sc)
         + [Baseline Modeling Results Summary](#baseline-modeling-results-summary-sc)
-        + [Screen Buildings Based on Goodness of Fit Thresholds](#Screen-Buildings-Based-on-Goodness-of-Fit-Thresholds)
-        + [Results Summary](#Results-summary)
-        + [Saving the Project](#Saving-the-Project)
-        + [Load an Existing Screening Project](#Load-an-existing-screening-project)
-    + [Savings Analysis](#Savings-Analysis)
-        + [New Savings Analysis Project](#New-savings-analysis-project)
+        + [Screen Buildings Based on Goodness of Fit Thresholds](#screen-buildings-based-on-goodness-of-fit-thresholds)
+        + [Results Summary](#results-summary)
+        + [Saving the Project](#saving-the-project)
+        + [Load an Existing Screening Project](#load-an-existing-screening-project)
+    + [Savings Analysis](#savings-analysis)
+        + [New Savings Analysis Project](#new-savings-analysis-project)
         + [Data Overview](#data-overview-sav)
         + [Create Baseline Models](#create-baseline-models-sav)
         + [Baseline Modeling Results Summary](#baseline-modeling-results-summary-sav)
         + [Savings Estimations](#savings-estimations)
         + [Potential Non-Routine Events Identification](#potential-nre-identification)
-        + [Results Summary](#Results-summary-sav)
+        + [Results Summary](#results-summary-sav)
         + [Saving the Project](#saving-the-project-sav)
         + [Load an Existing Screening Project](#load-an-existing-screening-project-sav)
-+ [**RMV2.0 Using R Scripting**](#RMV2.0-Using-r-scripting)
++ [**RMV2.0 Using R Scripting**](#r-scripting)
 + [**Appendix**](#appendix)
 + [**References**](#references)
 
@@ -118,7 +118,7 @@ timestamp format "2013-08-01 00:00:00" into a table with "1/8/13 00:00" format:
 data <- time_format(data,"%Y-%m-%d %H:%M:%S")
 ```
 
-#### Handling Holidays/Vacations Periods
+#### Handling Holidays/Vacations Periods <a id="handling-holidays-vacations-periods"></a> 
 There are two different mechanisms to create an additional binary variable that will differentiate holidays/vacations from the rest of the observation. The first approach is to use a csv file where the holidays/vacations dates are indicated. The format of this csv file is defined as follow:
 
 ```r
@@ -138,7 +138,7 @@ Data_with_new_variable <- RMV2.0::create_date_var(Data,start=start,
 ```
 where start is a vector that correspond to the beginning of each interval and end a vector that correspond to the end of each interval.
 
-## RMV2.0 Using the graphical user interface (GUI)
+## RMV2.0 Using the graphical user interface (GUI) <a id="gui"></a>
 
 To launch the RMV2.0 GUI there are two options, the first one is by using the following command in **Rstudio**:
 ```r
@@ -455,7 +455,7 @@ Once the project is loaded a popup will appear on the top right side of the dash
 
 
 
-## RMV2.0 Using R Scripting
+## RMV2.0 Using R Scripting <a id="r-scripting"></a>
 
 ### To generate baseline models
 
