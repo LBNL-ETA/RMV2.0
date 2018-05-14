@@ -17,7 +17,7 @@ Table of Contents:
     + [Timestamps Format](#timestamps-format)
     + [Handling Holidays/Vacations Periods](#handling-holidays-vacations-periods)
 + [**RMV2.0 Using the graphical user interface (GUI)**](#gui)
-    + [Screening Analysist](#screening-analysis)
+    + [Screening Analysis](#screening-analysis)
         + [New Screening Analysis Project](#new-screening-analysis-project)
         + [Data Overview](#data-overview-sc)
         + [Create Baseline Models](#create-baseline-models-sc)
