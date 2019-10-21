@@ -30,7 +30,7 @@
 #' @param lr A vector with combination of the learning rates.
 #' @param subsample A vector with combination of subsamples.
 #'
-#' @return a gbm_baseline object, which alist with the following components:
+#' @return a gbm_baseline object, which is a list with the following components:
 #' \describe{
 #'   \item{gbm_model}{an object that has been created by the function xgboost,
 #'    and which correspond to the optimal gbm model.}

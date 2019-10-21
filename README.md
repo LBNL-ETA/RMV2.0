@@ -35,9 +35,10 @@ package by running in the console the following command:
 ```r
 install.packages("devtools")
 ```
-Install the **RMV2.0** package using the following command:
+Install the **RMV2.0** package using the following commands:
 ```r
 devtools::install_github("LBNL-ETA/RMV2.0")
+devtools::install_version("shinyFiles", version = "0.6.2")
 ```
 
 ## For More Information
