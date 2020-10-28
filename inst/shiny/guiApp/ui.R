@@ -211,7 +211,7 @@ dashboardPage(skin = "red",
   ),#end of dashboardSidebar
   dashboardBody(
     useShinyjs(),
-    extendShinyjs(text = jscode, functions = c("warningBox")),
+    extendShinyjs(text = jscode, functions = c("warningBox","successBox")),
     tabItems(
       tabItem(tabName = "home",
         fluidPage(title = "Home",
