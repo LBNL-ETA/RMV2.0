@@ -68,14 +68,13 @@ pred_CVRMSE <- 100*sqrt(mean((pred_residuals)^2))/mean(res_pred$pred$eload[mask4
 pred_NMBE <- 100*mean((pred_residuals))/mean(res_pred$pred$eload[mask4])
 
 
-
+train_path = paste("/Users/gillianchu/lbnl/pre_12_months/12_T_Gridium_", var, ".csv", sep="")
+pred_path = paste("/Users/gillianchu/lbnl/post_12_months/12_P_Gridium_", var, ".csv", sep="")
 building_list = c("011", "017", "022", "023" , "026", "028", "031", "044", "048"))
 run_with_weights(building_list)
 run_with_weights <- function(building_list) {
-  for (var in building_list){
+  for (var in building_list, train_path, pred_path){
     print(var)
-    train_path = paste("/Users/gillianchu/lbnl/pre_12_months/12_T_Gridium_", var, ".csv", sep="")
-    pred_path = paste("/Users/gillianchu/lbnl/post_12_months/12_P_Gridium_", var, ".csv", sep="")
     res1 = gbm_baseline(train_path, pred_path, weight_strat = 1) # Default
     results(res_pred = res1, title = paste("Default: ", var), filename = paste("default_", var, sep=""))
     
@@ -132,7 +131,7 @@ gbm_baseline <- function(train_path = NULL,
                          days_off_path = NULL,
                          train_Data = NULL,
                          pred_Data = NULL,
-                         weight = 0.05,
+                         weights = seq(from=0.05,to=0.3,by=0.025),
                          weight_strat = 1,  # default
                          k_folds=5,
                          variables = c("Temp","tow"),
@@ -161,15 +160,17 @@ gbm_baseline <- function(train_path = NULL,
     cat('"Model Tuning"\n')
     cat('"================================="\n')
   }
-  tune_results <- gbm_tune(train,
+  tune_results <- gbm_tune_gillian(train,
                            k_folds = k_folds,
-                           variables = variables,
+                           variables = c("Temp","tow", "eload"),
                            ncores = ncores,
                            cv_blocks = cv_blocks,
                            iter = iter,
                            depth = depth,
                            lr = lr,
-                           subsample = subsample)
+                           subsample = subsample,
+                           weights = weights,
+                           weight_strat = weight_strat)
 
   tuned_parameters <- tune_results$tuned_parameters
   gbm_cv_results <- tune_results$grid_results
@@ -177,6 +178,8 @@ gbm_baseline <- function(train_path = NULL,
   # Final gbm model
   train_output <- train$eload
   train_input <- train[,variables]
+  
+  weight <- tuned_parameters$best_weight
   
   if (weight_strat == 1) {
     # Default setting
@@ -195,6 +198,8 @@ gbm_baseline <- function(train_path = NULL,
     weightsData <- 1 + (max(train$eload) - train$eload) * weight 
   } else if (weight_strat == 5) {
     # Weighting 
+    mask = whichpartrev(train$eload, n=100)
+    max_samples = c(train$eload[mask])
     weightsData <- ifelse(train$eload %in% max_samples, weight, 1)
   } else {
     print("Weighting strategy provided is not set, using default")
@@ -261,8 +266,85 @@ gbm_baseline <- function(train_path = NULL,
   return(res)
 }
 
-pred_accuracy <- function()
 
+# TUNING GILLIAN 
+gbm_tune_gillian <- function(Data,
+                     k_folds,
+                     variables = c("Temp","tow", "eload"),
+                     ncores,
+                     cv_blocks = "none",
+                     iter,
+                     depth,
+                     lr,
+                     subsample,
+                     weights,
+                     weight_strat){
+  cl <- parallel::makeCluster(ncores)
+  output <- Data$eload
+  input <- Data[,variables]
+  if (cv_blocks=="days"){
+    list_train <- k_dblocks_cv(Data,k_folds)
+  }
+  if (cv_blocks=="weeks"){
+    list_train <- k_wblocks_cv(Data,k_folds)
+  }
+  if (cv_blocks=="none"){
+    list_train <- caret::createFolds(y = output,k = k_folds,list = T)
+  }
+  gbm_grid <-  expand.grid(nrounds = iter,
+                           max_depth = depth,
+                           eta = lr,
+                           subsample = subsample,
+                           weights = weights)
+  
+  n_grid <- dim(gbm_grid)[1]
+  tab_grid_res <- data.frame(matrix(ncol = 10, nrow = n_grid))
+  names(tab_grid_res) <- c("iter","depth","lr","subsample",
+                           "R2","RMSE","CVRMSE",
+                           "R2_sd","RMSE_sd","CVRMSE_sd")
+  for (i in 1:n_grid){
+    nrounds_i <- gbm_grid$nrounds[i]
+    max_depth_i <- gbm_grid$max_depth[i]
+    eta_i <- gbm_grid$eta[i]
+    subsample_i <- gbm_grid$subsample[i]
+    weights_i <- gbm_grid$weights[i]
+    
+    list_res <- parallel::parLapply(cl,
+                                    list_train,
+                                    gbm_cv_parallel_gillian,
+                                    as.matrix(input),
+                                    output,
+                                    nrounds_i,
+                                    max_depth_i,
+                                    eta_i,
+                                    subsample_i,
+                                    weights_i, 
+                                    weight_strat)
+    tab_cv_res <- do.call("rbind", list_res)
+    tab_grid_res$iter[i] <- nrounds_i
+    tab_grid_res$depth[i] <- max_depth_i
+    tab_grid_res$lr[i] <- eta_i
+    tab_grid_res$subsample[i] <- subsample_i
+    tab_grid_res$weights[i] <- weights_i
+    tab_grid_res$R2[i] <- mean(tab_cv_res$R2)
+    tab_grid_res$RMSE[i] <- mean(tab_cv_res$RMSE)
+    tab_grid_res$CVRMSE[i] <- mean(tab_cv_res$CVRMSE)
+    tab_grid_res$R2_sd[i] <- sd(tab_cv_res$R2)
+    tab_grid_res$RMSE_sd[i] <- sd(tab_cv_res$RMSE)
+    tab_grid_res$CVRMSE_sd[i] <- sd(tab_cv_res$CVRMSE)
+  }
+  idx_best_param <- which(tab_grid_res$RMSE == min(tab_grid_res$RMSE))
+  best_param <- list(best_iter = tab_grid_res$iter[idx_best_param],
+                     best_depth = tab_grid_res$depth[idx_best_param],
+                     best_lr = tab_grid_res$lr[idx_best_param],
+                     best_subsample = tab_grid_res$subsample[idx_best_param],
+                     best_weight = tab_grid_res$weights[idx_best_param])
+  res <- NULL
+  res$grid_results <- tab_grid_res
+  res$tuned_parameters <- best_param
+  return(res)
+}
+  
 #-------------------------------------------------------------------------------
 #
 #     Gradient Boosting machine tuning function
@@ -364,13 +446,74 @@ gbm_tune <- function(Data,
 
 
 #' @export
-gbm_cv_parallel <- function(idx_train,input,output,nrounds,max_depth,eta,subsample){
+gbm_cv_parallel_gillian <- function(idx_train,input,output,nrounds,max_depth,eta,subsample,weights_i,weight_strat){
+  #print("Hello")
+  #print(idx_train)
   tab_res <- as.data.frame(matrix(nr=1,nc=3))
   names(tab_res) <- c("R2","RMSE","CVRMSE")
   train <- input[-idx_train,]
   train_output <- output[-idx_train]
   test <- input[idx_train,]
   test_output <- output[idx_train]
+  
+  if (weight_strat == 1) {
+    # Default setting
+    weightsData <- ifelse(train[,"eload"] > 0.0, 1, 1)
+  } else if (weight_strat == 2) {
+    # Class Reweighting
+    mask = whichpartrev(train[,"eload"], n=100)
+    max_samples = c(train[,"eload"][mask])
+    high_eload_weight = NROW(train[,"eload"]) / NROW(max_samples) * 1/2
+    weightsData <- ifelse(train[,"eload"] %in% max_samples,high_eload_weight, 1)   
+  } else if (weight_strat == 3) {
+    # Temperature and Energy 
+    weightsData <- 1 + (max(train[,"Temp"]) - train[,"Temp"] + max(train[,"eload"]) - train[,"eload"]) * weights_i # bigger temp is heavier
+  } else if (weight_strat == 4) {
+    # Energy Load
+    weightsData <- 1 + (max(train[,"eload"]) - train[,"eload"]) * weights_i 
+  } else if (weight_strat == 5) {
+    # Weighting 
+    mask = whichpartrev(train[,"eload"], n=100)
+    max_samples = c(train[,"eload"][mask])
+    weightsData <- ifelse(train[,"eload"] %in% max_samples, weights_i, 1)
+  } else {
+    print("Weighting strategy provided is not set, using default")
+    weightsData <- ifelse(train[,"eload"] > 0.0, 1, 1)
+  }
+  
+  xgb_fit <- xgboost::xgboost(data = train,
+                              label = train_output,
+                              weight = weightsData,
+                              max_depth = max_depth,
+                              eta = eta,
+                              nrounds = nrounds,
+                              objective = "reg:linear",
+                              alpha=0,
+                              colsample_bytree=1,
+                              subsample=subsample,
+                              verbose = 0,
+                              nthread = 1,
+                              save_period = NULL)
+  yhat <- predict(xgb_fit, test)
+  tab_res$R2[1] <- 1-mean((yhat - test_output)^2)/var(test_output)
+  tab_res$RMSE[1] <- sqrt(mean((yhat - test_output)^2))
+  tab_res$CVRMSE[1] <- 100*sqrt(mean((yhat - test_output)^2))/mean(test_output)
+  return(tab_res)
+}
+
+
+
+#' @export
+gbm_cv_parallel <- function(idx_train,input,output,nrounds,max_depth,eta,subsample){
+  print("Hello")
+  print(idx_train)
+  tab_res <- as.data.frame(matrix(nr=1,nc=3))
+  names(tab_res) <- c("R2","RMSE","CVRMSE")
+  train <- input[-idx_train,]
+  train_output <- output[-idx_train]
+  test <- input[idx_train,]
+  test_output <- output[idx_train]
+  
   xgb_fit <- xgboost::xgboost(data = train,
                               label = train_output,
                               max_depth = max_depth,
@@ -389,7 +532,6 @@ gbm_cv_parallel <- function(idx_train,input,output,nrounds,max_depth,eta,subsamp
   tab_res$CVRMSE[1] <- 100*sqrt(mean((yhat - test_output)^2))/mean(test_output)
   return(tab_res)
 }
-
 
 
 
