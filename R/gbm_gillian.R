@@ -261,7 +261,9 @@ gbm_baseline <- function(train_path = NULL,
     pred_input <- pred[,variables]
     y_pred <- predict(gbm_model, as.matrix(pred_input))
     res$pred <- pred
+    write.csv(pred, "/Users/gillianchu/lbnl/results/pred.csv", row.names = TRUE) # you can change this to whatever path name
     res$prediction <- y_pred
+    write.csv(y_pred, "/Users/gillianchu/lbnl/results/prediction.csv", row.names = TRUE) # likewise, you can change this one
   }
   return(res)
 }
