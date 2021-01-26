@@ -67,13 +67,18 @@ pred_R2 <- 100*(1-mean((pred_residuals)^2)/var(res_pred$pred$eload[mask4]))
 pred_CVRMSE <- 100*sqrt(mean((pred_residuals)^2))/mean(res_pred$pred$eload[mask4])
 pred_NMBE <- 100*mean((pred_residuals))/mean(res_pred$pred$eload[mask4])
 
+#train_path = paste("/Users/gillianchu/lbnl/pre_12_months/12_T_Gridium_", var, ".csv", sep="")
+#pred_path = paste("/Users/gillianchu/lbnl/post_12_months/12_P_Gridium_", var, ".csv", sep="")
+#building_list = c("011", "017", "022", "023" , "026", "028", "031", "044", "048")
 
-train_path = paste("/Users/gillianchu/lbnl/pre_12_months/12_T_Gridium_", var, ".csv", sep="")
-pred_path = paste("/Users/gillianchu/lbnl/post_12_months/12_P_Gridium_", var, ".csv", sep="")
-building_list = c("011", "017", "022", "023" , "026", "028", "031", "044", "048"))
+train_path = "/Users/gillianchu/lbnl/pre_12_months"
+pred_path = "/Users/gillianchu/lbnl/post_12_months"
+
+building_list = list.files(path = train_path, pattern="*.csv") # lists out all the files in the train_path dir
+
 run_with_weights(building_list)
 run_with_weights <- function(building_list) {
-  for (var in building_list, train_path, pred_path){
+  for (var in building_list){
     print(var)
     res1 = gbm_baseline(train_path, pred_path, weight_strat = 1) # Default
     results(res_pred = res1, title = paste("Default: ", var), filename = paste("default_", var, sep=""))
